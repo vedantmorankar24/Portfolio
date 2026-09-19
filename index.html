@@ -16,7 +16,402 @@
     <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
+</head><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vedant Morankar — Full-Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --bg-soft: #F6F8FB;
+    --card: #FFFFFF;
+    --border: #E4E9F0;
+    --ink: #101828;
+    --ink-dim: #475467;
+    --ink-faint: #98A2B3;
+    --brand: #2653EB;
+    --brand-dark: #1B3FC4;
+    --brand-soft: #EEF2FF;
+    --font-display: 'Sora', 'Segoe UI', sans-serif;
+    --font-body: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0F1420; --bg-soft: #161D2E; --card: #161D2E; --border: #263149;
+      --ink: #EEF1F7; --ink-dim: #A7B0C3; --ink-faint: #6C7690;
+      --brand: #6B8CFF; --brand-dark: #8AA3FF; --brand-soft: #1B2440;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0F1420; --bg-soft: #161D2E; --card: #161D2E; --border: #263149;
+    --ink: #EEF1F7; --ink-dim: #A7B0C3; --ink-faint: #6C7690;
+    --brand: #6B8CFF; --brand-dark: #8AA3FF; --brand-soft: #1B2440;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--font-body); line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--brand); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+
+  .wrap { max-width: 800px; margin: 0 auto; padding: 0 28px; }
+
+  header.nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  header.nav .wrap { display: flex; align-items: center; justify-content: space-between; padding: 18px 28px; }
+  .brand-mark { font-family: var(--font-display); font-weight: 600; font-size: 16px; color: var(--ink); }
+  nav.links { display: flex; gap: 26px; }
+  nav.links a { font-size: 14px; color: var(--ink-dim); font-weight: 500; }
+  nav.links a:hover { color: var(--brand); text-decoration: none; }
+
+  section { padding: 68px 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+
+  .hero { padding-top: 84px; padding-bottom: 60px; }
+  .hero .eyebrow {
+    display: inline-block; font-size: 13px; font-weight: 600; color: var(--brand);
+    background: var(--brand-soft); padding: 5px 12px; border-radius: 20px; margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(2.2rem, 5vw, 3.1rem); line-height: 1.15; margin: 0 0 16px;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 span { color: var(--brand); }
+  .hero p.bio { font-size: 17px; color: var(--ink-dim); max-width: 62ch; margin: 0 0 32px; }
+  .hero .meta { display: flex; gap: 18px; flex-wrap: wrap; font-size: 14px; color: var(--ink-faint); margin-bottom: 32px; }
+  .hero .meta span { display: inline-flex; align-items: center; gap: 6px; }
+
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--font-body); font-size: 14.5px; font-weight: 600; padding: 12px 22px;
+    border-radius: 8px; border: 1px solid var(--border); display: inline-flex; align-items: center; gap: 8px;
+    cursor: pointer; background: var(--card); color: var(--ink);
+    transition: border-color .15s ease, transform .1s ease, box-shadow .15s ease;
+  }
+  .btn:hover { border-color: var(--brand); text-decoration: none; box-shadow: 0 2px 10px rgba(38,83,235,0.08); }
+  .btn:active { transform: translateY(1px); }
+  .btn.primary { background: var(--brand); color: #fff; border-color: var(--brand); }
+  .btn.primary:hover { background: var(--brand-dark); border-color: var(--brand-dark); }
+  .btn-note { font-family: var(--font-body); font-size: 13px; color: var(--ink-faint); margin-top: 10px; }
+
+  h2.section-title {
+    font-family: var(--font-display); font-weight: 600; font-size: 1.5rem; margin: 0 0 32px; color: var(--ink);
+  }
+  h2.section-title small {
+    display: block; font-family: var(--font-body); font-weight: 500; font-size: 13px;
+    color: var(--brand); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px;
+  }
+
+  .exp-item { padding: 24px 0; border-top: 1px solid var(--border); }
+  .exp-item:first-child { border-top: none; padding-top: 0; }
+  .exp-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+  .exp-head h3 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; margin: 0; }
+  .exp-head .dates { font-size: 13.5px; color: var(--ink-faint); white-space: nowrap; }
+  .exp-org { font-size: 14.5px; color: var(--brand); font-weight: 500; margin: 0 0 12px; }
+  .exp-item ul { margin: 0; padding-left: 20px; color: var(--ink-dim); }
+  .exp-item li { margin-bottom: 7px; font-size: 15px; }
+
+  .project-card {
+    background: var(--bg-soft); border: 1px solid var(--border); border-radius: 14px;
+    padding: 30px 32px; margin-bottom: 22px;
+  }
+  .project-card:last-child { margin-bottom: 0; }
+  .project-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 12px; }
+  .project-card h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; margin: 0; }
+  .project-card .plink { font-size: 13.5px; font-weight: 500; white-space: nowrap; }
+  .project-card p { color: var(--ink-dim); font-size: 15.5px; margin: 0 0 18px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    font-size: 12.5px; font-weight: 500; color: var(--brand-dark);
+    background: var(--brand-soft); border-radius: 6px; padding: 5px 11px;
+  }
+
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 26px; }
+  .skill-group h4 { font-family: var(--font-display); font-size: 14px; font-weight: 600; margin: 0 0 12px; color: var(--ink); }
+  .skill-group .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-group .tag { background: var(--card); border: 1px solid var(--border); color: var(--ink-dim); }
+  .skill-group .tag.accent { color: var(--brand-dark); background: var(--brand-soft); border-color: transparent; font-weight: 600; }
+
+  .list-item { display: flex; justify-content: space-between; gap: 16px; padding: 16px 0; border-top: 1px solid var(--border); flex-wrap: wrap; }
+  .list-item:first-child { border-top: none; padding-top: 0; }
+  .list-item .what { font-size: 15.5px; }
+  .list-item .what strong { font-weight: 600; }
+  .list-item .when { font-size: 13.5px; color: var(--ink-faint); white-space: nowrap; }
+
+  footer { padding: 60px 0 72px; }
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 22px 26px; margin-bottom: 40px; }
+  .contact-grid .c-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-faint); margin-bottom: 6px; }
+  .contact-grid .c-value { font-size: 15.5px; font-weight: 500; }
+  footer .sign { font-size: 13.5px; color: var(--ink-faint); border-top: 1px solid var(--border); padding-top: 24px; }
+
+  @media (max-width: 560px) {
+    .project-head, .exp-head { flex-direction: column; align-items: flex-start; }
+  }
+</style>
 </head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <span class="brand-mark">Vedant Morankar</span>
+    <nav class="links">
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <span class="eyebrow">Available for full-time roles</span>
+    <h1>Full-stack developer building products with <span>React, Node.js &amp; MongoDB.</span></h1>
+    <p class="bio">Final-year B.E. Computer Engineering student with hands-on experience across the MERN stack and Python/Flask — from database design and REST APIs to responsive, production-ready interfaces.</p>
+    <div class="meta">
+      <span>📍 Satana, Nashik, Maharashtra</span>
+      <span>🎓 B.E. Computer Engineering, 2027</span>
+    </div>
+    <div class="cta-row">
+      <button class="btn primary" id="downloadBtn" type="button">Download résumé</button>
+      <a class="btn" href="mailto:vedantmorankar24@gmail.com">Email me</a>
+      <a class="btn" href="https://github.com/vedantmorankar24" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://linkedin.com/in/vedantmorankar24" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <p class="btn-note" id="downloadNote"></p>
+  </section>
+
+  <section id="experience">
+    <h2 class="section-title"><small>Career</small>Experience</h2>
+
+    <div class="exp-item">
+      <div class="exp-head">
+        <h3>Full Stack Developer — Trainee</h3>
+        <span class="dates">Dec 2025 – Feb 2026</span>
+      </div>
+      <p class="exp-org">OM Intelligence (AI Leela)</p>
+      <ul>
+        <li>Built and deployed AI-powered full-stack web applications end-to-end, applying secure coding and SDLC best practices across the development lifecycle.</li>
+        <li>Collaborated within a cohort environment to debug, test, and deliver working applications, strengthening agile teamwork and communication skills.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-head">
+        <h3>Web Development Intern</h3>
+        <span class="dates">Jun 2025 – Jul 2025</span>
+      </div>
+      <p class="exp-org">Acmegrade</p>
+      <ul>
+        <li>Developed and debugged full-stack web applications using HTML, CSS, and JavaScript, with backend integration and API-driven data flow.</li>
+        <li>Applied MVC architecture and full-stack workflows to deliver dynamic, database-driven web applications.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 class="section-title"><small>Selected work</small>Projects</h2>
+
+    <div class="project-card">
+      <div class="project-head">
+        <h3>FarmAI — Agricultural AI Platform</h3>
+        <a class="plink" href="https://github.com/vedantmorankar24" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+      <p>Lets farmers detect 50+ crop diseases from a photo using Groq's Llama Vision model, with a multilingual interface in Marathi, Hindi, and English and voice input/output for low-literacy users. Also tracks live mandi prices across 14 crops and checks government scheme eligibility.</p>
+      <div class="tags">
+        <span class="tag">React.js</span><span class="tag">Node.js</span><span class="tag">Express.js</span>
+        <span class="tag">MongoDB</span><span class="tag">Groq Llama Vision</span><span class="tag">Web Speech API</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-head">
+        <h3>StudentNest — Hostel &amp; Mess Finder</h3>
+        <a class="plink" href="https://github.com/vedantmorankar24" target="_blank" rel="noopener">View on GitHub →</a>
+      </div>
+      <p>A multi-role platform for students, hostel owners, and mess partners, with session-based authentication and full CRUD across listings. Includes multi-image upload, city-based search, and a dark/light theme toggle across 13+ pages.</p>
+      <div class="tags">
+        <span class="tag">React.js</span><span class="tag">Node.js</span><span class="tag">Express.js</span>
+        <span class="tag">MongoDB</span><span class="tag">Tailwind CSS</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2 class="section-title"><small>Toolbox</small>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>Languages</h4>
+        <div class="skill-tags">
+          <span class="tag">JavaScript</span><span class="tag">Python</span><span class="tag">Java</span><span class="tag">SQL</span><span class="tag">HTML</span><span class="tag">CSS</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>MERN Stack</h4>
+        <div class="skill-tags">
+          <span class="tag accent">React.js</span><span class="tag accent">Node.js</span><span class="tag accent">Express.js</span><span class="tag accent">MongoDB</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Frontend</h4>
+        <div class="skill-tags">
+          <span class="tag">Tailwind CSS</span><span class="tag">Responsive design</span><span class="tag">DOM / async / fetch</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Backend &amp; APIs</h4>
+        <div class="skill-tags">
+          <span class="tag">Flask (Python)</span><span class="tag">REST APIs</span><span class="tag">Auth &amp; sessions</span><span class="tag">OOP / MVC</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Databases</h4>
+        <div class="skill-tags">
+          <span class="tag">MongoDB</span><span class="tag">MySQL</span><span class="tag">SQLite</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Tools</h4>
+        <div class="skill-tags">
+          <span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Postman</span><span class="tag">VS Code</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2 class="section-title"><small>Background</small>Education</h2>
+    <div class="list-item">
+      <div class="what"><strong>B.E. Computer Engineering</strong> (pursuing) — GGS College of Engineering &amp; Research Center, Nashik</div>
+      <div class="when">2023 – 2027</div>
+    </div>
+    <div class="list-item">
+      <div class="what"><strong>HSC</strong> — Janata Vidhyalaya &amp; Kanishth Mahavidyalaya ACS College, Abhona · 52.67%</div>
+      <div class="when">2022 – 2023</div>
+    </div>
+    <div class="list-item">
+      <div class="what"><strong>SSC</strong> — Janata Vidhyalaya, Abhona · 93.80%</div>
+      <div class="when">2020 – 2021</div>
+    </div>
+  </section>
+
+  <section id="certs">
+    <h2 class="section-title"><small>Recognition</small>Certifications &amp; Achievements</h2>
+    <div class="list-item">
+      <div class="what">Deep Learning with Full Stack Product Deployment — OM Intelligence (AI Leela)</div>
+      <div class="when">Dec 2025 – Feb 2026</div>
+    </div>
+    <div class="list-item">
+      <div class="what">Java Core &amp; Advanced Java (OOPs, Multithreading, JDBC, Swing) — Raj Computer Class</div>
+      <div class="when"></div>
+    </div>
+    <div class="list-item">
+      <div class="what">BLOCKVERSE 2026 — 12-Hour Midnight Hackathon, GDGC SNJB</div>
+      <div class="when">Apr 2026</div>
+    </div>
+    <div class="list-item">
+      <div class="what">Smart India Hackathon (SIH) 2025 — Internal Round, IEDC, GCOERC Nashik</div>
+      <div class="when">Sep 2025</div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2 class="section-title"><small>Let's connect</small>Get in touch</h2>
+    <div class="contact-grid">
+      <div><p class="c-label">Email</p><p class="c-value"><a href="mailto:vedantmorankar24@gmail.com">vedantmorankar24@gmail.com</a></p></div>
+      <div><p class="c-label">Phone</p><p class="c-value">9158690866</p></div>
+      <div><p class="c-label">GitHub</p><p class="c-value"><a href="https://github.com/vedantmorankar24" target="_blank" rel="noopener">vedantmorankar24</a></p></div>
+      <div><p class="c-label">LinkedIn</p><p class="c-value"><a href="https://linkedin.com/in/vedantmorankar24" target="_blank" rel="noopener">vedantmorankar24</a></p></div>
+    </div>
+    <p class="sign">Open to full-stack developer roles (fresher) — Pune &amp; remote.</p>
+  </div>
+</footer>
+
+<script>
+(function() {
+  const RESUME_B64 = "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";
+  const btn = document.getElementById('downloadBtn');
+  const note = document.getElementById('downloadNote');
+
+  function b64ToBlob(b64, mime) {
+    const byteChars = atob(b64);
+    const byteNumbers = new Array(byteChars.length);
+    for (let i = 0; i < byteChars.length; i++) byteNumbers[i] = byteChars.charCodeAt(i);
+    return new Blob([new Uint8Array(byteNumbers)], { type: mime });
+  }
+
+  let downloadsCap = null;
+  (async () => {
+    try {
+      if (window.claude && typeof window.claude.use === 'function') {
+        downloadsCap = await window.claude.use('downloads');
+      }
+    } catch (e) { downloadsCap = null; }
+  })();
+
+  function browserDownload(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  btn.addEventListener('click', async () => {
+    const blob = b64ToBlob(RESUME_B64, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+    const filename = 'Vedant_Morankar_Resume.docx';
+    btn.disabled = true;
+    note.textContent = '';
+    try {
+      if (downloadsCap) {
+        await downloadsCap.save({ filename, data: blob });
+      } else {
+        browserDownload(blob, filename);
+      }
+      note.textContent = 'Saved to your device.';
+    } catch (e) {
+      if (e && e.code === 'declined') {
+        note.textContent = '';
+      } else {
+        try {
+          browserDownload(blob, filename);
+          note.textContent = 'Saved to your device.';
+        } catch (e2) {
+          note.textContent = 'Could not save the file — email me instead.';
+        }
+      }
+    } finally {
+      btn.disabled = false;
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
 
 <body id="page-top">
     <!-- Navigation-->
